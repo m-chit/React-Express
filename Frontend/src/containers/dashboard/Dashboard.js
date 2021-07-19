@@ -32,7 +32,6 @@ const Dashboard = () => {
       disabled: disabled,
       id: uuid()
     }
-    console.log("newDevice", newDevice)
     postNewDevice(dispatch, newDevice)
    
   }
@@ -52,7 +51,6 @@ const Dashboard = () => {
   }
 
   const saveChanges = (changedDevice) => {
-    console.log("saveChanged", changedDevice)
     editOneDevice(dispatch, changedDevice)
     handleClose()
   }

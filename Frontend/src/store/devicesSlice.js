@@ -21,7 +21,6 @@ const devicesSlice = createSlice({
         
         },
         editDevice: (state, action) => {
-            console.log("put device", action.payload.device)
             const database = state.allDevices.filter(device => device.id !== action.payload.device.id)
             state.allDevices = [...database, action.payload.device]
         },
