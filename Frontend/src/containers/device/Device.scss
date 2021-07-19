@@ -1,0 +1,26 @@
+.Device {
+    margin: 10px;
+
+    &__title {
+        @extend .ellipsis; 
+    }
+
+    &__description {
+       @extend .line-clamp; 
+    }
+}
+
+
+
+.ellipsis {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.line-clamp {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+  }

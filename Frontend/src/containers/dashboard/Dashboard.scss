@@ -1,0 +1,25 @@
+.Dashboard {
+    background-color: #fff;
+    border: solid 1px #eee;
+    display: flex;
+    justify-content: center;
+    width: 80vw;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    
+    &__list {
+        display: flex;
+        flex-wrap: wrap;
+       width: 100%;
+      
+       
+    }
+
+    &__submit {
+        width: 300px;
+        padding-left: 20px;
+        border-left: solid 1px #eee;
+    }
+    
+}
