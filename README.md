@@ -1,4 +1,4 @@
-# Info about project
+# Info about project :cat:
 
 It's simply web application in React-Redux-Saga with backend in Express. You can GET, POST, PUT, DELETE 'devices'. Tested on Chrome.
 
@@ -8,7 +8,7 @@ In the project directory (api), you can run:
 
 ```js
 npm install
-node ./bin/www
+nnpm start
 ```
 
 Runs the app in the development mode.\
@@ -55,6 +55,6 @@ scss
 
 ### Author
 
-[Marta Chit] :cat:
+[Marta Chit]
 
 [marta chit]: https://github.com/m-chit
