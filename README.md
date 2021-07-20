@@ -1,4 +1,4 @@
-# Info about project 
+# Info about project
 
 It's simply web application in React-Redux-Saga with backend in Express. You can GET, POST, PUT, DELETE 'devices'. Tested on Chrome.
 
@@ -20,7 +20,8 @@ npm test
 
 Launches the test runner in the interactive watch mode.
 
-### Stack: 
+### Stack:
+
 Express,\
 Jest,\
 Joi
@@ -43,7 +44,8 @@ npm test
 
 Launches the test runner in the interactive watch mode.
 
-### Stack: 
+### Stack:
+
 React + Hooks,\
 Redux,\
 Saga,\
@@ -52,6 +54,7 @@ bootstrap-react,\
 scss
 
 ### Author
-[Marta Chit] :cat: 
 
-[Marta Chit]: <https://github.com/m-chit>
+[Marta Chit] :cat:
+
+[marta chit]: https://github.com/m-chit

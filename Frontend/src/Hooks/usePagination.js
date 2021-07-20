@@ -16,7 +16,6 @@ export const usePagination = () => {
     const start = (activePage - 1) * devicesOnPage;
     const end = activePage * devicesOnPage;
     const newDevicesOnPage = devices.slice(start, end);
-    //const newDevicesOnPage = getDevicesOnPage(state);
 
     setActualDevicesOnPage(newDevicesOnPage);
   }, [activePage, devices]);
