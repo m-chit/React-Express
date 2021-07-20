@@ -1,19 +1,17 @@
+import Dashboard from "./containers/dashboard/Dashboard";
+import { Fragment } from "react";
+import "./App.scss";
+import Navigation from "./containers/navigation/Navigation";
 
-import Dashboard from './containers/dashboard/Dashboard';
-import { Fragment } from 'react';
-import './App.scss';
-import Navigation from './containers/navigation/Navigation';
-
-function App() {
-
+const App = () => {
   return (
     <Fragment>
-     <Navigation></Navigation>
-       <div className="App">
-          <Dashboard />
-       </div>
+      <div className="App">
+        <Navigation></Navigation>
+        <Dashboard />
+      </div>
     </Fragment>
   );
-}
+};
 
 export default App;

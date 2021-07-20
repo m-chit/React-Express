@@ -1,12 +1,16 @@
-import { Col, Toast } from 'react-bootstrap';
+import { Col, Toast } from "react-bootstrap";
 
-import './ErrorMessage.scss';
+import "./ErrorMessage.scss";
 
-const ErrorMessage = ({isShowToggle, closeToggle}) => {
-    return (
-      <div className="Toggle">
-        <Col xs={6} className="my-1">
-        <Toast onClick={() => closeToggle()} show={isShowToggle} animation={false}>
+const ErrorMessage = ({ isShowToggle, closeToggle }) => {
+  return (
+    <div className="Toggle">
+      <Col xs={6} className="my-1">
+        <Toast
+          onClick={() => closeToggle()}
+          show={isShowToggle}
+          animation={false}
+        >
           <Toast.Header closeButton={false}>
             <strong className="me-auto">Error Message</strong>
             <small>Backend error</small>
@@ -14,8 +18,8 @@ const ErrorMessage = ({isShowToggle, closeToggle}) => {
           <Toast.Body>Ups, something went wrong!</Toast.Body>
         </Toast>
       </Col>
-      </div>
-    );
+    </div>
+  );
 };
 
 export default ErrorMessage;

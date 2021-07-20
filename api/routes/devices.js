@@ -6,7 +6,7 @@ const validator = require('express-joi-validation').createValidator({})
 const deviceSchema = Joi.object({
   id: Joi.string().required(),
   name: Joi.string().required(),
-  description: Joi.string().optional(),
+  description: Joi.string().optional().allow(null, ''),
   disabled: Joi.bool().required(),
 })
 

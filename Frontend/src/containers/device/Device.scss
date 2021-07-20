@@ -1,26 +1,31 @@
 .Device {
-    margin: 10px;
+  margin: 8px;
+  min-height: 210px;
 
-    &__title {
-        @extend .ellipsis; 
-    }
+  &__title {
+    @extend .ellipsis;
+  }
 
-    &__description {
-       @extend .line-clamp; 
-    }
+  &__description {
+    @extend .line-clamp;
+  }
+
+  &__buttons {
+    padding: 10px 0 10px 0;
+    display: flex;
+    justify-content: space-between;
+  }
 }
 
-
-
 .ellipsis {
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .line-clamp {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;  
-    overflow: hidden;
-  }
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

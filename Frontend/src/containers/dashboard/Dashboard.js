@@ -1,87 +1,84 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 
-import './Dashboard.scss';
-import Device from '../device/Device'
-
-import { useEffect } from 'react';
-import { postNewDevice, getAllDevices, deleteOneDevice, editOneDevice, setFailOnFalse } from '../../services/devicesService';
-//import { createSelector } from 'reselect'; 
-import { useState } from 'react'
-import NewDevicePost from '../newDevicePost/NewDevicePost';
-import uuid from 'react-uuid';
-import EditModal from '../editModal/EditModal';
-import ErrorMessage from '../errorMessage/ErrorMessage';
+import "./Dashboard.scss";
+import Device from "../device/Device";
+import NewDevicePost from "../newDevicePost/NewDevicePost";
+import EditModal from "../editModal/EditModal";
+import ErrorMessage from "../errorMessage/ErrorMessage";
+import Paginations from "../Paginations/Paginations";
+import { usePagination } from "../../Hooks/usePagination";
+import { useDevices } from "../../Hooks/useDevices";
+import { useShowModal } from "../../Hooks/useShowModal";
 
 const Dashboard = () => {
-  const dispatch = useDispatch();
-  const devices = useSelector(state => state.devices.allDevices);
-  const isFail = useSelector(state => state.devices.fail);
+  const {
+    devices,
+    deleteDevice,
+    editDevice,
+    saveChanges,
+    closeToggle,
+    editedDevice,
+    addDevice,
+  } = useDevices();
+  const { totalPage, actualDevicesOnPage } = usePagination();
 
-  useEffect(() => {
-   getAllDevices(dispatch)
-  }, [dispatch])
+  const { show, handleClose, handleShow } = useShowModal(false);
 
-  const closeToggle = () => {
-    setFailOnFalse(dispatch)
-  }
+  const isFail = useSelector((state) => state.devices.fail);
 
-  const addDevice = (name, description, disabled) => {
-    const newDevice = {
-      name: name,
-      description: description,
-      disabled: disabled,
-      id: uuid()
-    }
-    postNewDevice(dispatch, newDevice)
-   
-  }
+  const save = (changedDevice) => {
+    saveChanges(changedDevice);
+    handleClose();
+  };
 
-  const deleteDevice = (id) => {
-    deleteOneDevice(dispatch, id)
-  }
-
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  const [editedDevice, setEditedDevice] = useState({});
-
-  const editDevice = (device) => {
+  const edit = (changedDevice) => {
     handleShow();
-    setEditedDevice(device)
-  }
+    editDevice(changedDevice);
+  };
 
-  const saveChanges = (changedDevice) => {
-    editOneDevice(dispatch, changedDevice)
-    handleClose()
-  }
+  const renderDevices = (device) => (
+    <Device
+      key={device.id}
+      device={device}
+      deleteDevice={deleteDevice}
+      editDevice={edit}
+    />
+  );
 
-  const renderDevices = (device) => 
-  <Device 
-  key={device.id} 
-  device={device} 
-  deleteDevice={deleteDevice} 
-  editDevice={editDevice}/>
+  const info =
+    "You do not have any devices or something went wrong... Add a new device (or turn on backend)";
 
-const info = "You do not have any devices or something went wrong... Add a new device (or turn on backend)"
-
-      return (
-        <div className="Dashboard"> 
-         <div className="Dashboard__list"> 
-            { devices.length === 0 ? info : devices.map(device => renderDevices(device)) }
-            { show ? <EditModal 
-              handleClose={handleClose} 
-              show={show} 
-              editDevice={editDevice} 
-              device={editedDevice} 
-              save={saveChanges}>
-            </EditModal> : null }
+  return (
+    <div className="Dashboard">
+      <div className="Dashboard__devices">
+        <div className="Dashboard__devices__list">
+          {devices.length === 0
+            ? info
+            : actualDevicesOnPage.map((device) => renderDevices(device))}
+          {show ? (
+            <EditModal
+              handleClose={handleClose}
+              show={show}
+              editDevice={edit}
+              device={editedDevice}
+              save={save}
+            ></EditModal>
+          ) : null}
         </div>
-        <div className="Dashboard__submit">
-          <NewDevicePost submit={addDevice}></NewDevicePost>
-          {isFail ? <ErrorMessage isShowToggle={isFail} closeToggle={closeToggle}/> : null }
+        <div className="Dashboard__devices__pagination">
+          {totalPage > 1 ? <Paginations totalPage={totalPage} /> : null}
         </div>
-        </div>
-      );
-}
+      </div>
+
+      <div className="Dashboard__submit">
+        <NewDevicePost submit={addDevice}></NewDevicePost>
+
+        {isFail ? (
+          <ErrorMessage isShowToggle={isFail} closeToggle={closeToggle} />
+        ) : null}
+      </div>
+    </div>
+  );
+};
 
 export default Dashboard;
