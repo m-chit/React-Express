@@ -8,7 +8,7 @@ In the project directory (api), you can run:
 
 ```js
 npm install
-nnpm start
+npm start
 ```
 
 Runs the app in the development mode.\
